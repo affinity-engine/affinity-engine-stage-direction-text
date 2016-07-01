@@ -1,0 +1,15 @@
+{{#if nameTranslation}}
+  <div class="et-text-caption {{namePosition}}" data-test={{hook "affinity_engine_stage_text_name"}}>{{nameTranslation}}</div>
+{{/if}}
+{{ember-lxl
+  cps=cps
+  instant=instant
+  keyboardActivated=keyboardActivated
+  keyboardPriority=keyboardPriority
+  keys=keys
+  scrollable=scrollable
+  text=textTranslation
+  tweenEffect=tweenEffect
+  tweenRate=tweenRate
+  onComplete=(action "completeText")
+}}

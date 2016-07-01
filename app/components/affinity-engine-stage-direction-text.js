@@ -1,0 +1,1 @@
+export { default } from 'affinity-engine-stage-direction-text/components/affinity-engine-stage-direction-text';

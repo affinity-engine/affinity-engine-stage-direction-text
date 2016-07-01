@@ -18,6 +18,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "affinity-engine": "git+https://github.com/affinity-engine/affinity-engine.git",
+    "affinity-engine-stage": "git+https://github.com/affinity-engine/affinity-engine-stage.git",
     "babel-eslint": "6.0.4",
     "broccoli-asset-rev": "^2.4.2",
     "ember-ajax": "0.7.1",
@@ -37,12 +39,11 @@
     "ember-export-application-global": "^1.0.5",
     "ember-hook": "1.0.1",
     "ember-i18n": "4.2.0",
+    "ember-letter-by-letter": "0.0.4",
     "ember-load-initializers": "^0.5.1",
     "ember-moment": "6.1.0",
     "ember-perfect-scrollbar": "0.0.1",
     "ember-resolver": "^2.0.3",
-    "affinity-engine": "git+https://github.com/affinity-engine/affinity-engine.git",
-    "affinity-engine-stage": "git+https://github.com/affinity-engine/affinity-engine-stage.git",
     "ember-try": "^0.2.2",
     "loader.js": "^4.0.1"
   },
