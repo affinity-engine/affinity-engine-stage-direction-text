@@ -8,7 +8,9 @@ const {
   Component,
   computed,
   get,
-  isPresent
+  isPresent,
+  run,
+  typeOf
 } = Ember;
 
 const { inject: { service } } = Ember;
@@ -29,6 +31,8 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   layout,
 
   classNames: ['et-text-container'],
+  classNameBindings: ['joinedCustomClassNames'],
+  hook: 'affinity_engine_stage_direction_text',
 
   config: multiton('affinity-engine/config', 'engineId'),
   translator: service('affinity-engine/translator'),
@@ -78,12 +82,22 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
     }
   }).readOnly(),
 
+  joinedCustomClassNames: computed('customClassNames.[]', {
+    get() {
+      const classNames = get(this, 'customClassNames');
+
+      return typeOf(classNames) === 'array' ? classNames.join(' ') : classNames;
+    }
+  }),
+
   actions: {
     completeText() {
       if (get(this, 'willResolveExternally')) { return; }
 
       this.executeTransitionOut().then(() => {
-        this.resolveAndDestroy();
+        run(() => {
+          this.resolveAndDestroy();
+        });
       });
     }
   }
