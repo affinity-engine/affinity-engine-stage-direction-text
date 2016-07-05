@@ -30,7 +30,7 @@ const configurationTiers = [
 export default Component.extend(DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin, {
   layout,
 
-  classNames: ['et-text-container'],
+  classNames: ['ae-text-container'],
   classNameBindings: ['joinedCustomClassNames'],
   hook: 'affinity_engine_stage_direction_text',
 

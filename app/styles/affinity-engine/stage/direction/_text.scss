@@ -1,1 +1,5 @@
+$ae-text-included: true;
+
 @import "../../../node_modules/ember-letter-by-letter/app/styles/ember-lxl/ember-lxl";
+@import "text/components";
+@import "text/variables";
