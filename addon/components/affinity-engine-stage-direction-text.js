@@ -36,10 +36,9 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
 
   config: multiton('affinity-engine/config', 'engineId'),
   translator: service('affinity-engine/translator'),
-  stateManager: multiton('affinity-engine/state-manager', 'engineId'),
 
   character: alias('directable.attrs.character'),
-  keyboardActivated: alias('stateManager.isFocused'),
+  keyboardActivated: alias('isFocused'),
 
   customClassNames: configurable(configurationTiers, 'classNames'),
   cps: configurable(configurationTiers, 'cps'),
