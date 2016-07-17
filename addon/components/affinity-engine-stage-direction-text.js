@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-text';
-import { configurable, deepConfigurable } from 'affinity-engine';
+import { configurable, classNamesConfigurable, deepConfigurable } from 'affinity-engine';
 import { DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin } from 'affinity-engine-stage';
 import multiton from 'ember-multiton-service';
 
@@ -9,8 +9,7 @@ const {
   computed,
   get,
   isPresent,
-  run,
-  typeOf
+  run
 } = Ember;
 
 const { inject: { service } } = Ember;
@@ -31,7 +30,6 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   layout,
 
   classNames: ['ae-text-container'],
-  classNameBindings: ['joinedCustomClassNames'],
   hook: 'affinity_engine_stage_direction_text',
 
   config: multiton('affinity-engine/config', 'engineId'),
@@ -40,7 +38,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   character: alias('directable.attrs.character'),
   keyboardActivated: alias('isFocused'),
 
-  customClassNames: configurable(configurationTiers, 'classNames'),
+  customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
   cps: configurable(configurationTiers, 'cps'),
   keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
   keys: configurable(configurationTiers, 'keys.accept'),
@@ -83,14 +81,6 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
       return get(this, 'translator').translate(get(this, 'text'));
     }
   }).readOnly(),
-
-  joinedCustomClassNames: computed('customClassNames.[]', {
-    get() {
-      const classNames = get(this, 'customClassNames');
-
-      return typeOf(classNames) === 'array' ? classNames.join(' ') : classNames;
-    }
-  }),
 
   actions: {
     completeText() {

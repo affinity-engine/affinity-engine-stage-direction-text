@@ -26,6 +26,6 @@ test('Affinity Engine | stage | Directions | Text', function(assert) {
 
     return click('.lxl-container');
   }).then(() => {
-    assert.ok($hook('affinity_engine_stage_direction_text').hasClass('foo'), 'class is correct');
+    assert.ok($hook('affinity_engine_stage_direction_text_name_inner_container').hasClass('foo'), 'class is correct');
   });
 });

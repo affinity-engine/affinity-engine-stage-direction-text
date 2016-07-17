@@ -21,6 +21,7 @@
     "affinity-engine": "git+https://github.com/affinity-engine/affinity-engine.git",
     "affinity-engine-animator-velocity": "git+https://github.com/affinity-engine/affinity-engine-animator-velocity.git",
     "affinity-engine-stage": "git+https://github.com/affinity-engine/affinity-engine-stage.git",
+    "affinity-engine-styles-bundle": "git+https://github.com/affinity-engine/affinity-engine-styles-bundle.git",
     "babel-eslint": "^6.0.4",
     "broccoli-asset-rev": "^2.4.2",
     "ember-ajax": "^2.0.1",
