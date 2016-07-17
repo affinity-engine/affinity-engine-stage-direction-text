@@ -53,6 +53,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   text: configurable(configurationTiers, 'text'),
   tweenEffect: configurable(configurationTiers, 'tweenEffect'),
   tweenRate: configurable(configurationTiers, 'tweenRate'),
+  tweenLibrary: alias('config.attrs.affinity-engine.animator.name'),
 
   didInsertElement(...args) {
     this._super(...args);
