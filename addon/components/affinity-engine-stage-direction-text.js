@@ -29,7 +29,7 @@ const configurationTiers = [
 export default Component.extend(DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin, {
   layout,
 
-  classNames: ['ae-text-container'],
+  classNames: ['ae-stage-direction-text-container'],
   hook: 'affinity_engine_stage_direction_text',
 
   config: multiton('affinity-engine/config', 'engineId'),
