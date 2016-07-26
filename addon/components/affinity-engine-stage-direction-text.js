@@ -21,9 +21,9 @@ const configurationTiers = [
   'character.attrs',
   'character.attrs.fixture.text',
   'character.attrs.fixture',
-  'config.attrs.director.text',
-  'config.attrs.director',
-  'config.attrs.globals'
+  'config.attrs.component.stage.direction.text',
+  'config.attrs.component.stage',
+  'config.attrs'
 ];
 
 export default Component.extend(DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin, {
@@ -49,8 +49,8 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
   transitionOut: deepConfigurable(configurationTiers, 'transitionOut'),
   text: configurable(configurationTiers, 'text'),
-  tweenEffect: configurable(configurationTiers, 'tweenEffect'),
-  tweenRate: configurable(configurationTiers, 'tweenRate'),
+  tweenEffect: configurable(configurationTiers, 'lxlTransition.effect'),
+  tweenRate: configurable(configurationTiers, 'lxlTransition.rate'),
   tweenLibrary: alias('config.attrs.affinity-engine.animator.name'),
 
   didInsertElement(...args) {
