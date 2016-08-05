@@ -71,13 +71,19 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
 
   nameTranslation: computed('name', {
     get() {
-      return get(this, 'translator').translate(get(this, 'name'));
+      const name = get(this, 'name.text') || get(this, 'name');
+      const options = get(this, 'name.options');
+
+      return get(this, 'translator').translate(name, options) || name;
     }
   }).readOnly(),
 
   textTranslation: computed('text', {
     get() {
-      return get(this, 'translator').translate(get(this, 'text'));
+      const text = get(this, 'text.text') || get(this, 'text');
+      const options = get(this, 'text.options');
+
+      return get(this, 'translator').translate(text, options) || text;
     }
   }).readOnly(),
 
