@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-text';
-import { configurable, classNamesConfigurable, deepConfigurable } from 'affinity-engine';
+import { configurable, classNamesConfigurable, deepConfigurable, registrant } from 'affinity-engine';
 import { DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin } from 'affinity-engine-stage';
 import multiton from 'ember-multiton-service';
 
@@ -12,7 +12,6 @@ const {
   run
 } = Ember;
 
-const { inject: { service } } = Ember;
 const { alias } = computed;
 
 const configurationTiers = [
@@ -33,7 +32,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   hook: 'affinity_engine_stage_direction_text',
 
   config: multiton('affinity-engine/config', 'engineId'),
-  translator: service('affinity-engine/translator'),
+  translator: registrant('affinity-engine/translator'),
 
   character: alias('directable.attrs.character'),
   keyboardActivated: alias('isFocused'),
