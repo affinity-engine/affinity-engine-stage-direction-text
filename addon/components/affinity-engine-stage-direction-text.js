@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-text';
-import { configurable, classNamesConfigurable, deepConfigurable, registrant } from 'affinity-engine';
+import { registrant } from 'affinity-engine';
 import { DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin } from 'affinity-engine-stage';
 import multiton from 'ember-multiton-service';
 
@@ -14,17 +14,6 @@ const {
 
 const { alias } = computed;
 
-const configurationTiers = [
-  'directable.attrs',
-  'character.attrs.text',
-  'character.attrs',
-  'character.attrs.fixture.text',
-  'character.attrs.fixture',
-  'config.attrs.component.stage.direction.text',
-  'config.attrs.component.stage',
-  'config.attrs'
-];
-
 export default Component.extend(DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin, {
   layout,
 
@@ -37,19 +26,19 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   character: alias('directable.attrs.character'),
   keyboardActivated: alias('isFocused'),
 
-  customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
-  cps: configurable(configurationTiers, 'cps'),
-  keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
-  keys: configurable(configurationTiers, 'keys.accept'),
-  instant: configurable(configurationTiers, 'instant'),
-  name: configurable(configurationTiers, 'name'),
-  namePosition: configurable(configurationTiers, 'namePosition'),
-  scrollable: configurable(configurationTiers, 'scrollable'),
-  transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
-  transitionOut: deepConfigurable(configurationTiers, 'transitionOut'),
-  text: configurable(configurationTiers, 'text'),
-  tweenEffect: configurable(configurationTiers, 'lxlTransition.effect'),
-  tweenRate: configurable(configurationTiers, 'lxlTransition.rate'),
+  customClassNames: alias('directable.customClassNames'),
+  cps: alias('directable.cps'),
+  keyboardPriority: alias('directable.keyboardPriority'),
+  keys: alias('directable.keys'),
+  instant: alias('directable.instant'),
+  name: alias('directable.name'),
+  namePosition: alias('directable.namePosition'),
+  scrollable: alias('directable.scrollable'),
+  transitionIn: alias('directable.transitionIn'),
+  transitionOut: alias('directable.transitionOut'),
+  text: alias('directable.text'),
+  tweenEffect: alias('directable.tweenEffect'),
+  tweenRate: alias('directable.tweenRate'),
   tweenLibrary: alias('config.attrs.affinity-engine.animator.name'),
 
   didInsertElement(...args) {
