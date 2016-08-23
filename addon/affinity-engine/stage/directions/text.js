@@ -11,38 +11,45 @@ const {
   set
 } = Ember;
 
-const configurationTiers = [
-  '_attrs',
-  'character.attrs.text',
-  'character.attrs',
-  'character.attrs.fixture.text',
-  'character.attrs.fixture',
-  'config.attrs.component.stage.direction.text',
-  'config.attrs.component.stage',
-  'config.attrs'
-];
-
 export default Direction.extend({
   componentPath: 'affinity-engine-stage-direction-text',
   layer: 'engine.prompt.text',
 
-  attrs: computed(() => new Object({
-    customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
-    cps: configurable(configurationTiers, 'cps'),
-    keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
-    keys: configurable(configurationTiers, 'keys.accept'),
-    instant: configurable(configurationTiers, 'instant'),
-    name: configurable(configurationTiers, 'name'),
-    namePosition: configurable(configurationTiers, 'namePosition'),
-    scrollable: configurable(configurationTiers, 'scrollable'),
-    transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
-    transitionOut: deepConfigurable(configurationTiers, 'transitionOut'),
-    tweenEffect: configurable(configurationTiers, 'lxlTransition.effect'),
-    tweenRate: configurable(configurationTiers, 'lxlTransition.rate')
-  })),
-
   config: multiton('affinity-engine/config', 'engineId'),
   fixtureStore: multiton('affinity-engine/fixture-store', 'engineId'),
+
+  _configurationTiers: [
+    'attrs',
+    'character.attrs.text',
+    'character.attrs',
+    'character.attrs.fixture.text',
+    'character.attrs.fixture',
+    'config.attrs.component.stage.direction.text',
+    'config.attrs.component.stage',
+    'config.attrs'
+  ],
+
+  _directableDefinition: computed('_configurationTiers', {
+    get() {
+      const configurationTiers = get(this, '_configurationTiers');
+
+      return {
+        customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
+        cps: configurable(configurationTiers, 'cps'),
+        keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
+        keys: configurable(configurationTiers, 'keys.accept'),
+        instant: configurable(configurationTiers, 'instant'),
+        name: configurable(configurationTiers, 'name'),
+        namePosition: configurable(configurationTiers, 'namePosition'),
+        scrollable: configurable(configurationTiers, 'scrollable'),
+        text: configurable(configurationTiers, 'text'),
+        transitionIn: deepConfigurable(configurationTiers, 'transitionIn', 'transition'),
+        transitionOut: deepConfigurable(configurationTiers, 'transitionOut'),
+        tweenEffect: configurable(configurationTiers, 'lxlTransition.effect'),
+        tweenRate: configurable(configurationTiers, 'lxlTransition.rate')
+      }
+    }
+  }),
 
   _setup(text, character) {
     this._entryPoint();
@@ -54,15 +61,15 @@ export default Direction.extend({
   },
 
   _reset() {
-    const _attrs = get(this, '_attrs');
+    const attrs = get(this, 'attrs');
 
-    return this._super(getProperties(_attrs, 'text', 'character'));
+    return this._super(getProperties(attrs, 'text', 'character'));
   },
 
   classNames(classNames) {
     this._entryPoint();
 
-    set(this, '_attrs.classNames', classNames);
+    set(this, 'attrs.classNames', classNames);
 
     return this;
   },
@@ -70,7 +77,7 @@ export default Direction.extend({
   instant(instant = true) {
     this._entryPoint();
 
-    set(this, '_attrs.instant', instant);
+    set(this, 'attrs.instant', instant);
 
     return this;
   },
@@ -78,7 +85,7 @@ export default Direction.extend({
   keyboardPriority(keyboardPriority) {
     this._entryPoint();
 
-    set(this, '_attrs.keyboardPriority', keyboardPriority);
+    set(this, 'attrs.keyboardPriority', keyboardPriority);
 
     return this;
   },
@@ -86,7 +93,7 @@ export default Direction.extend({
   keys(keys) {
     this._entryPoint();
 
-    set(this, '_attrs.keys', { accept: keys });
+    set(this, 'attrs.keys', { accept: keys });
 
     return this;
   },
@@ -94,7 +101,7 @@ export default Direction.extend({
   name(name) {
     this._entryPoint();
 
-    set(this, '_attrs.name', name);
+    set(this, 'attrs.name', name);
 
     return this;
   },
@@ -102,7 +109,7 @@ export default Direction.extend({
   namePosition(namePosition) {
     this._entryPoint();
 
-    set(this, '_attrs.namePosition', namePosition);
+    set(this, 'attrs.namePosition', namePosition);
 
     return this;
   },
@@ -110,7 +117,7 @@ export default Direction.extend({
   scrollable(scrollable = true) {
     this._entryPoint();
 
-    set(this, '_attrs.scrollable', scrollable);
+    set(this, 'attrs.scrollable', scrollable);
 
     return this;
   },
@@ -118,7 +125,7 @@ export default Direction.extend({
   textTransition(textTransition) {
     this._entryPoint();
 
-    set(this, '_attrs.textTransition', textTransition);
+    set(this, 'attrs.textTransition', textTransition);
 
     return this;
   },
@@ -126,7 +133,7 @@ export default Direction.extend({
   textSpeed(textSpeed) {
     this._entryPoint();
 
-    set(this, '_attrs.textSpeed', textSpeed);
+    set(this, 'attrs.textSpeed', textSpeed);
 
     return this;
   },
@@ -142,7 +149,7 @@ export default Direction.extend({
   transitionIn(effect, duration, options = {}) {
     this._entryPoint();
 
-    set(this, '_attrs.transitionIn', merge({ duration, effect }, options));
+    set(this, 'attrs.transitionIn', merge({ duration, effect }, options));
 
     return this;
   },
@@ -150,7 +157,7 @@ export default Direction.extend({
   transitionOut(effect, duration, options = {}) {
     this._entryPoint();
 
-    set(this, '_attrs.transitionOut', merge({ duration, effect }, options));
+    set(this, 'attrs.transitionOut', merge({ duration, effect }, options));
 
     return this;
   }
