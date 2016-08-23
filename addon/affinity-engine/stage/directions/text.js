@@ -7,7 +7,6 @@ const {
   computed,
   merge,
   get,
-  getProperties,
   set
 } = Ember;
 
@@ -58,12 +57,6 @@ export default Direction.extend({
     set(this, 'character', character);
 
     return this;
-  },
-
-  _reset() {
-    const attrs = get(this, 'attrs');
-
-    return this._super(getProperties(attrs, 'text', 'character'));
   },
 
   classNames(classNames) {
