@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-text';
 import { registrant } from 'affinity-engine';
-import { DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin } from 'affinity-engine-stage';
+import { DirectableComponentMixin, StyleableComponentMixin } from 'affinity-engine-stage';
 import multiton from 'ember-multiton-service';
 
 const {
@@ -9,12 +9,12 @@ const {
   computed,
   get,
   isPresent,
-  run
+  set
 } = Ember;
 
 const { alias } = computed;
 
-export default Component.extend(DirectableComponentMixin, StyleableComponentMixin, TransitionableComponentMixin, {
+export default Component.extend(DirectableComponentMixin, StyleableComponentMixin, {
   layout,
 
   classNames: ['ae-stage-direction-text-container'],
@@ -45,17 +45,12 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
     this._super(...args);
 
     this._handlePriorSceneRecord();
-    this._transitionInText();
   },
 
   _handlePriorSceneRecord() {
     if (isPresent(get(this, 'priorSceneRecord'))) {
       this.resolveAndDestroy();
     }
-  },
-
-  _transitionInText() {
-    this.executeTransitionIn();
   },
 
   nameTranslation: computed('name', {
@@ -80,11 +75,11 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
     completeText() {
       if (get(this, 'willResolveExternally')) { return; }
 
-      this.executeTransitionOut().then(() => {
-        run(() => {
-          this.resolveAndDestroy();
-        });
-      });
+      set(this, 'willTransitionOut', true);
+    },
+
+    didTransitionOut() {
+      this.resolveAndDestroy();
     }
   }
 });
