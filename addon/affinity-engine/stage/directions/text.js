@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { configurable, classNamesConfigurable, deepConfigurable } from 'affinity-engine';
-import { Direction } from 'affinity-engine-stage';
+import { Direction, cmd } from 'affinity-engine-stage';
 import multiton from 'ember-multiton-service';
 
 const {
@@ -50,108 +50,52 @@ export default Direction.extend({
     }
   }),
 
-  _setup(text, character) {
-    this._entryPoint();
-
+  _setup: cmd({ async: true, directable: true }, function(text, character) {
     set(this, 'attrs.text', text);
     set(this, 'character', character);
+  }),
 
-    return this;
-  },
-
-  classNames(classNames) {
-    this._entryPoint();
-
+  classNames: cmd(function(classNames) {
     set(this, 'attrs.classNames', classNames);
+  }),
 
-    return this;
-  },
-
-  instant(instant = true) {
-    this._entryPoint();
-
+  instant: cmd(function(instant = true) {
     set(this, 'attrs.instant', instant);
+  }),
 
-    return this;
-  },
-
-  keyboardPriority(keyboardPriority) {
-    this._entryPoint();
-
+  keyboardPriority: cmd(function(keyboardPriority) {
     set(this, 'attrs.keyboardPriority', keyboardPriority);
+  }),
 
-    return this;
-  },
-
-  keys(keys) {
-    this._entryPoint();
-
+  keys: cmd(function(keys) {
     set(this, 'attrs.keys', { accept: keys });
+  }),
 
-    return this;
-  },
-
-  name(name) {
-    this._entryPoint();
-
+  name: cmd(function(name) {
     set(this, 'attrs.name', name);
+  }),
 
-    return this;
-  },
-
-  namePosition(namePosition) {
-    this._entryPoint();
-
+  namePosition: cmd(function(namePosition) {
     set(this, 'attrs.namePosition', namePosition);
+  }),
 
-    return this;
-  },
-
-  scrollable(scrollable = true) {
-    this._entryPoint();
-
+  scrollable: cmd(function(scrollable = true) {
     set(this, 'attrs.scrollable', scrollable);
+  }),
 
-    return this;
-  },
-
-  textTransition(textTransition) {
-    this._entryPoint();
-
+  textTransition: cmd(function(textTransition) {
     set(this, 'attrs.textTransition', textTransition);
+  }),
 
-    return this;
-  },
-
-  textSpeed(textSpeed) {
-    this._entryPoint();
-
+  textSpeed: cmd(function(textSpeed) {
     set(this, 'attrs.textSpeed', textSpeed);
+  }),
 
-    return this;
-  },
-
-  transition(...args) {
-    this._entryPoint();
-
-    this.transitionIn(...args);
-
-    return this;
-  },
-
-  transitionIn(effect, duration, options = {}) {
-    this._entryPoint();
-
+  transitionIn: cmd(function(effect, duration, options = {}) {
     set(this, 'attrs.transitionIn', merge({ duration, effect }, options));
+  }),
 
-    return this;
-  },
-
-  transitionOut(effect, duration, options = {}) {
-    this._entryPoint();
-
+  transitionOut: cmd(function(effect, duration, options = {}) {
     set(this, 'attrs.transitionOut', merge({ duration, effect }, options));
-
-    return this;
-  }
+  })
 });
