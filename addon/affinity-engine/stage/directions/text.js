@@ -19,10 +19,7 @@ export default Direction.extend({
 
   _configurationTiers: [
     'attrs',
-    'character.attrs.text',
-    'character.attrs',
-    'character.attrs.fixture.text',
-    'character.attrs.fixture',
+    'links.attrs',
     'config.attrs.component.stage.direction.text',
     'config.attrs.component.stage',
     'config.attrs'
@@ -50,9 +47,8 @@ export default Direction.extend({
     }
   }),
 
-  _setup: cmd({ async: true, directable: true }, function(text, character) {
+  _setup: cmd({ async: true, directable: true }, function(text) {
     set(this, 'attrs.text', text);
-    set(this, 'character', character);
   }),
 
   classNames: cmd(function(classNames) {
