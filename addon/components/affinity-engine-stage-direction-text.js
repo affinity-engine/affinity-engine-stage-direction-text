@@ -26,6 +26,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   character: alias('directable.attrs.character'),
   keyboardActivated: alias('isFocused'),
 
+  animationLibrary: alias('directable.animationLibrary'),
   customClassNames: alias('directable.customClassNames'),
   cps: alias('directable.cps'),
   keyboardPriority: alias('directable.keyboardPriority'),
@@ -39,7 +40,6 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   text: alias('directable.text'),
   tweenEffect: alias('directable.tweenEffect'),
   tweenRate: alias('directable.tweenRate'),
-  tweenLibrary: alias('config.attrs.affinity-engine.animator.name'),
 
   didInsertElement(...args) {
     this._super(...args);

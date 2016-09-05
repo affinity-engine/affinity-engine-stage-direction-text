@@ -31,6 +31,7 @@ export default Direction.extend({
       const configurationTiers = get(this, '_configurationTiers');
 
       return {
+        animationLibrary: configurable(configurationTiers, 'animationLibrary'),
         customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
         cps: configurable(configurationTiers, 'cps'),
         keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
