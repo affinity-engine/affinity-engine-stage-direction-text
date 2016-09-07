@@ -7,6 +7,7 @@ const {
   computed,
   merge,
   get,
+  getProperties,
   set
 } = Ember;
 
@@ -37,6 +38,7 @@ export default Direction.extend({
         keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
         keys: configurable(configurationTiers, 'keys.accept'),
         instant: configurable(configurationTiers, 'instant'),
+        isStatic: configurable(configurationTiers, 'isStatic'),
         name: configurable(configurationTiers, 'name'),
         namePosition: configurable(configurationTiers, 'namePosition'),
         scrollable: configurable(configurationTiers, 'scrollable'),
@@ -81,6 +83,10 @@ export default Direction.extend({
     set(this, 'attrs.scrollable', scrollable);
   }),
 
+  static: cmd(function(isStatic = true) {
+    set(this, 'attrs.isStatic', isStatic);
+  }),
+
   textTransition: cmd(function(textTransition) {
     set(this, 'attrs.textTransition', textTransition);
   }),
@@ -95,5 +101,11 @@ export default Direction.extend({
 
   transitionOut: cmd(function(effect, duration, options = {}) {
     set(this, 'attrs.transitionOut', merge({ duration, effect }, options));
+  }),
+
+  close: cmd(function() {
+    const { directable, engineId, windowId } = getProperties(this, 'directable', 'engineId', 'windowId');
+
+    this.publish(`ae:${engineId}:${windowId}:shouldRemoveDirectable`, directable);
   })
 });

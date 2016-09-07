@@ -32,6 +32,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   keyboardPriority: alias('directable.keyboardPriority'),
   keys: alias('directable.keys'),
   instant: alias('directable.instant'),
+  isStatic: alias('directable.isStatic'),
   name: alias('directable.name'),
   namePosition: alias('directable.namePosition'),
   scrollable: alias('directable.scrollable'),
@@ -73,7 +74,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
 
   actions: {
     completeText() {
-      if (get(this, 'willResolveExternally')) { return; }
+      if (get(this, 'isStatic')) { return; }
 
       set(this, 'willTransitionOut', true);
     },
