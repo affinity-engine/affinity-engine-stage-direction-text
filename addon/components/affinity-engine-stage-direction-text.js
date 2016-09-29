@@ -33,6 +33,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   keys: alias('directable.keys'),
   instant: alias('directable.instant'),
   isStatic: alias('directable.isStatic'),
+  links: alias('directable.links'),
   name: alias('directable.name'),
   namePosition: alias('directable.namePosition'),
   scrollable: alias('directable.scrollable'),
