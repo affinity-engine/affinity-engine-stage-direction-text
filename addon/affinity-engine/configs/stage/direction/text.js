@@ -3,7 +3,7 @@ export default {
   component: {
     stage: {
       direction: {
-        character: {
+        text: {
           _linkedAttrs: {
             text: 'text'
           }
