@@ -7,7 +7,6 @@ const {
   computed,
   merge,
   get,
-  getProperties,
   set
 } = Ember;
 
@@ -16,6 +15,7 @@ export default Direction.extend({
   layer: 'engine.prompt.text',
 
   config: multiton('affinity-engine/config', 'engineId'),
+  esBus: multiton('message-bus', 'engineId', 'stageId'),
   fixtureStore: multiton('affinity-engine/fixture-store', 'engineId'),
 
   _configurationTiers: [
@@ -104,8 +104,6 @@ export default Direction.extend({
   }),
 
   close: cmd(function() {
-    const { directable, engineId, windowId } = getProperties(this, 'directable', 'engineId', 'windowId');
-
-    this.publish(`ae:${engineId}:${windowId}:shouldRemoveDirectable`, directable);
+    get(this, 'esBus').publish('shouldRemoveDirectable', get(this, 'directable'));
   })
 });
