@@ -2,7 +2,6 @@ import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-text';
 import { registrant } from 'affinity-engine';
 import { DirectableComponentMixin, StyleableComponentMixin } from 'affinity-engine-stage';
-import multiton from 'ember-multiton-service';
 
 const {
   Component,
@@ -20,7 +19,6 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   classNames: ['ae-stage-direction-text-container'],
   hook: 'affinity_engine_stage_direction_text',
 
-  config: multiton('affinity-engine/config', 'engineId'),
   translator: registrant('affinity-engine/translator'),
 
   character: alias('directable.attrs.character'),
