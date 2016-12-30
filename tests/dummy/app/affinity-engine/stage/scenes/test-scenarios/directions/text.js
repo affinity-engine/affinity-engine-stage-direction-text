@@ -11,7 +11,7 @@ export default Scene.extend({
 
     yield script.text('123');
     yield script.text('456').name('foo').namePosition('center');
-    yield script.text('456').classNames(['foo', 'bar']);
+    yield script.text('789').classNames(['foo', 'bar']);
 
     yield step();
 

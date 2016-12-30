@@ -3,4 +3,4 @@
 
 # affinity-engine-stage-direction-text
 
-You'll find the interactive guides [here](http://www.ember.engine/learn/stage/directions/text).
+You'll find the interactive guides [here](http://www.affinityengine.org/components/stage/directions/text).
