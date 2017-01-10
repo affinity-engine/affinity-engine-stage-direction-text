@@ -7,7 +7,6 @@ const {
   Component,
   computed,
   get,
-  isPresent,
   set
 } = Ember;
 
@@ -40,18 +39,6 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   text: alias('directable.text'),
   tweenEffect: alias('directable.tweenEffect'),
   tweenRate: alias('directable.tweenRate'),
-
-  didInsertElement(...args) {
-    this._super(...args);
-
-    this._handlePriorSceneRecord();
-  },
-
-  _handlePriorSceneRecord() {
-    if (isPresent(get(this, 'priorSceneRecord'))) {
-      this.resolveAndDestroy();
-    }
-  },
 
   nameTranslation: computed('name', {
     get() {
