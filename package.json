@@ -59,7 +59,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://www.affinityengine.org/components/stage/directions/text",
+    "demoURL": "http://www.affinityengine.org/#/components/stage/directions/text",
     "after": [
       "affinity-engine",
       "ember-letter-by-letter"
