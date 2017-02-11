@@ -1,6 +1,6 @@
 {
   "name": "affinity-engine-stage-direction-text",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Text for Affinity Engine Stage",
   "keywords": [
     "ember-addon",
@@ -27,11 +27,11 @@
     "ember-perfect-scrollbar": "^0.0.2"
   },
   "devDependencies": {
-    "affinity-engine": "git+https://github.com/affinity-engine/affinity-engine.git",
-    "affinity-engine-animator-velocity": "git+https://github.com/affinity-engine/affinity-engine-animator-velocity.git",
-    "affinity-engine-stage": "git+https://github.com/affinity-engine/affinity-engine-stage.git",
-    "affinity-engine-styles-bundle": "git+https://github.com/affinity-engine/affinity-engine-styles-bundle.git",
-    "affinity-engine-translator-ember-intl": "git+https://github.com/affinity-engine/affinity-engine-translator-ember-intl.git",
+    "affinity-engine": "^0.1.0",
+    "affinity-engine-animator-velocity": "^0.1.0",
+    "affinity-engine-stage": "^0.1.0",
+    "affinity-engine-styles-bundle": "^0.1.0",
+    "affinity-engine-translator-ember-intl": "^0.1.0",
     "babel-eslint": "^6.0.4",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^2.4.1",
