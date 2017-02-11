@@ -1,6 +1,6 @@
 {
   "name": "affinity-engine-stage-direction-text",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Text for Affinity Engine Stage",
   "keywords": [
     "ember-addon",
@@ -59,7 +59,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://www.affinityengine.org/#/components/stage/directions/text",
+    "demoURL": "http://www.affinityengine.org/#/stage/directions/text",
     "after": [
       "affinity-engine",
       "ember-letter-by-letter"
