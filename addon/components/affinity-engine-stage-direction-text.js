@@ -24,6 +24,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   keyboardActivated: alias('isFocused'),
 
   animationLibrary: alias('directable.animationLibrary'),
+  cbs: alias('directable.cbs'),
   customClassNames: alias('directable.customClassNames'),
   cps: alias('directable.cps'),
   keyboardPriority: alias('directable.keyboardPriority'),

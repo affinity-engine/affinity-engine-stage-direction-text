@@ -18,6 +18,8 @@ export default Direction.extend({
   esBus: multiton('message-bus', 'engineId', 'stageId'),
   fixtureStore: multiton('affinity-engine/fixture-store', 'engineId'),
 
+  cbs: computed(() => { return {} }),
+
   _configurationTiers: [
     'attrs',
     'links.attrs',
@@ -34,6 +36,7 @@ export default Direction.extend({
       return {
         animationLibrary: configurable(configurationTiers, 'animationLibrary'),
         customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
+        cbs: deepConfigurable(configurationTiers, 'cbs'),
         cps: configurable(configurationTiers, 'cps'),
         keyboardPriority: configurable(configurationTiers, 'keyboardPriority'),
         keys: configurable(configurationTiers, 'keys.accept'),
@@ -53,6 +56,10 @@ export default Direction.extend({
 
   _setup: cmd({ async: true, directable: true }, function(text) {
     set(this, 'attrs.text', text);
+  }),
+
+  cb: cmd(function(name, cb) {
+    set(this, `cbs.${name}`, cb);
   }),
 
   classNames: cmd(function(classNames) {
