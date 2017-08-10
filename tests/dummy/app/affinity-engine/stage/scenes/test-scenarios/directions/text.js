@@ -5,13 +5,13 @@ export default Scene.extend({
   name: 'Text Direction Test',
 
   start: task(function * (script) {
-    const staticText = script.text('static').static();
+    const staticText = script.text('static', { static: true});
 
     yield step();
 
     yield script.text('123');
-    yield script.text('456').name('foo').namePosition('center');
-    yield script.text('789').classNames(['foo', 'bar']);
+    yield script.text('456', { name: 'foo', namePosition: 'center' });
+    yield script.text('789', { classNames: ['foo', 'bar'] });
 
     yield step();
 

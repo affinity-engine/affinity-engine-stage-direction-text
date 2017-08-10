@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-text';
-import { registrant } from 'affinity-engine';
+import { classNames, registrant } from 'affinity-engine';
 import { DirectableComponentMixin, StyleableComponentMixin } from 'affinity-engine-stage';
 
 const {
@@ -10,7 +10,7 @@ const {
   set
 } = Ember;
 
-const { alias } = computed;
+const { reads } = computed;
 
 export default Component.extend(DirectableComponentMixin, StyleableComponentMixin, {
   layout,
@@ -20,26 +20,26 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
 
   translator: registrant('affinity-engine/translator'),
 
-  character: alias('directable.attrs.character'),
-  keyboardActivated: alias('isFocused'),
+  keyboardActivated: reads('isFocused'),
 
-  animationLibrary: alias('directable.animationLibrary'),
-  cbs: alias('directable.cbs'),
-  customClassNames: alias('directable.customClassNames'),
-  cps: alias('directable.cps'),
-  keyboardPriority: alias('directable.keyboardPriority'),
-  keys: alias('directable.keys'),
-  instant: alias('directable.instant'),
-  isStatic: alias('directable.isStatic'),
-  links: alias('directable.links'),
-  name: alias('directable.name'),
-  namePosition: alias('directable.namePosition'),
-  scrollable: alias('directable.scrollable'),
-  transitionIn: alias('directable.transitionIn'),
-  transitionOut: alias('directable.transitionOut'),
-  text: alias('directable.text'),
-  tweenEffect: alias('directable.tweenEffect'),
-  tweenRate: alias('directable.tweenRate'),
+  configuration: reads('direction.configuration'),
+  animationLibrary: reads('configuration.animationLibrary'),
+  cbs: reads('configuration.cbs'),
+  cps: reads('configuration.cps'),
+  keyboardPriority: reads('configuration.keyboardPriority'),
+  keys: reads('configuration.keys.accept'),
+  instant: reads('configuration.instant'),
+  static: reads('configuration.static'),
+  name: reads('configuration.name'),
+  scrollable: reads('configuration.scrollable'),
+  transitionIn: reads('configuration.transitionIn'),
+  transitionOut: reads('configuration.transitionOut'),
+  text: reads('configuration.text'),
+  tweenEffect: reads('configuration.tweenEffect'),
+  tweenRate: reads('configuration.tweenRate'),
+
+  customClassNames: classNames('configuration.classNames'),
+  namePosition: classNames('configuration.namePosition'),
 
   nameTranslation: computed('name', {
     get() {
@@ -61,7 +61,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
 
   actions: {
     completeText() {
-      if (get(this, 'isStatic')) { return; }
+      if (get(this, 'static')) { return; }
 
       set(this, 'willTransitionOut', true);
     },
