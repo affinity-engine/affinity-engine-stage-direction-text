@@ -34,6 +34,7 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
   scrollable: reads('configuration.scrollable'),
   transitionIn: reads('configuration.transitionIn'),
   transitionOut: reads('configuration.transitionOut'),
+  transitions: reads('configuration.transitions'),
   text: reads('configuration.text'),
   tweenEffect: reads('configuration.tweenEffect'),
   tweenRate: reads('configuration.tweenRate'),

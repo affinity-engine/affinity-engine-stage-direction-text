@@ -9,6 +9,8 @@ export default Scene.extend({
 
     yield step();
 
+    staticText.transition({ effect: { opacity: 0.5 }, duration: 0 });
+
     yield script.text('123');
     yield script.text('456', { name: 'foo', namePosition: 'center' });
     yield script.text('789', { classNames: ['foo', 'bar'] });

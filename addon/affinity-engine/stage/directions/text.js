@@ -29,7 +29,8 @@ export default Direction.extend({
 
   _setup: cmd({ async: true, render: true }, function(text, options = {}) {
     this.configure(assign({
-      text
+      text,
+      transitions: Ember.A()
     }, options));
   }),
 
@@ -39,5 +40,9 @@ export default Direction.extend({
 
   close: cmd(function() {
     get(this, 'esBus').publish('shouldRemoveDirection', this);
+  }),
+
+  transition: cmd({ async: true, render: true }, function(options = {}) {
+    this.getConfiguration('transitions').pushObject(options);
   })
 });

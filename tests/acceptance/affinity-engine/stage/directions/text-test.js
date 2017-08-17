@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { test } from 'qunit';
 import moduleForAcceptance from '../../../../../tests/helpers/module-for-acceptance';
-import { $hook } from 'ember-hook';
+import { $hook, hook } from 'ember-hook';
 
 moduleForAcceptance('Acceptance | affinity-engine/stage/directions/text', {
   beforeEach() {
@@ -14,7 +14,7 @@ moduleForAcceptance('Acceptance | affinity-engine/stage/directions/text', {
 });
 
 test('Affinity Engine | stage | Directions | Text', function(assert) {
-  assert.expect(15);
+  assert.expect(16);
 
   visit('/test-scenarios/affinity-engine/stage/directions/text').then(() => {
     assert.equal($hook('affinity_engine_stage_direction_text').text().trim(), 'static', 'text is correct');
@@ -31,6 +31,7 @@ test('Affinity Engine | stage | Directions | Text', function(assert) {
   step();
 
   andThen(() => {
+    assert.equal($hook('affinity_engine_stage_direction_text').first().children(hook('ember_animation_box')).css('opacity'), 0.5, 'box transitioned using `transition`');
     assert.equal($hook('affinity_engine_stage_direction_text_content').last().text().trim(), '123', 'text is correct');
     assert.equal($hook('affinity_engine_stage_direction_text').length, 2, 'second text present');
   });
