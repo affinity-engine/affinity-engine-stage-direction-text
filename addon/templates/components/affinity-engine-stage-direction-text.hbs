@@ -1,30 +1,21 @@
-{{#affinity-engine-animation-box-wrapper
-  animationAdapter=animationLibrary
-  classNames="ae-hidden"
-  transitionIn=transitionIn
-  transitionOut=transitionOut
-  transitions=transitions
-  willTransitionOut=willTransitionOut
-  didTransitionOut=(action "didTransitionOut")
-}}
-  <div class="ae-text {{customClassNames}}" data-test={{hook "affinity_engine_stage_direction_text_name_inner_container"}}>
-    {{#if nameTranslation}}
-      <div class="ae-text-caption {{namePosition}}" data-test={{hook "affinity_engine_stage_direction_text_name"}}>{{nameTranslation}}</div>
-    {{/if}}
-    {{ember-lxl
-      cbs=cbs
-      cps=cps
-      instant=instant
-      keyboardActivated=keyboardActivated
-      keyboardPriority=keyboardPriority
-      keys=keys
-      scrollable=scrollable
-      text=textTranslation
-      tweenEffect=tweenEffect
-      tweenLibrary=animationLibrary
-      tweenRate=tweenRate
-      onComplete=(action "completeText")
-      hook="affinity_engine_stage_direction_text_content"
-    }}
-  </div>
-{{/affinity-engine-animation-box-wrapper}}
+<div class="ae-text {{customClassNames}}" data-test={{hook "affinity_engine_stage_direction_text_caption_inner_container"}}>
+  {{#if captionTranslation}}
+    <div class="ae-text-caption {{captionPosition}}" data-test={{hook "affinity_engine_stage_direction_text_caption"}}>{{captionTranslation}}</div>
+  {{/if}}
+  {{ember-lxl
+    cbs=callbacks
+    duration=duration
+    effect=effect
+    instant=instant
+    keyboardActivated=keyboardActivated
+    keyboardPriority=keyboardPriority
+    keys=keys
+    linkedDirections=linkedDirections
+    rate=rate
+    scrollable=scrollable
+    text=textTranslation
+    tweenLibrary=animator
+    onComplete=(action "completeText")
+    hook="affinity_engine_stage_direction_text_content"
+  }}
+</div>

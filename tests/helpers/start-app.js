@@ -4,17 +4,14 @@ import config from '../../config/environment';
 import registerETTestHelpers from './affinity-engine/stage/register-test-helpers';
 
 export default function startApp(attrs) {
-  let application;
+  let attributes = Ember.merge({}, config.APP);
+  attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;
 
-  // use defaults, but you can override
-  let attributes = Ember.assign({}, config.APP, attrs);
-
-  Ember.run(() => {
-    application = Application.create(attributes);
+  return Ember.run(() => {
+    let application = Application.create(attributes);
     application.setupForTesting();
     registerETTestHelpers();
     application.injectTestHelpers();
+    return application;
   });
-
-  return application;
 }

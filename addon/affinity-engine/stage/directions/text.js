@@ -11,7 +11,6 @@ const {
 
 export default Direction.extend({
   componentPath: 'affinity-engine-stage-direction-text',
-  layer: 'engine.prompt.text',
 
   config: multiton('affinity-engine/config', 'engineId'),
   esBus: multiton('message-bus', 'engineId', 'stageId'),
@@ -20,22 +19,25 @@ export default Direction.extend({
   cbs: computed(() => { return {} }),
 
   _configurationTiers: [
-    'global',
-    'component.stage',
-    'prompt',
+    'component.stage.direction.text',
     'text',
-    'component.stage.direction.text'
+    'component.stage.direction.prompt',
+    'prompt',
+    'component.stage.direction.every',
+    'component.stage.every',
+    'children'
   ],
 
   _setup: cmd({ async: true, render: true }, function(text, options = {}) {
     this.configure(assign({
+      callbacks: Ember.Object.create(),
       text,
       transitions: Ember.A()
     }, options));
   }),
 
   cb: cmd(function(name, cb) {
-    set(this, `cbs.${name}`, cb);
+    set(this, `callbacks.${name}`, cb);
   }),
 
   close: cmd(function() {

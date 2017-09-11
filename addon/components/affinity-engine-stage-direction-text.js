@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-stage-direction-text';
-import { classNames, registrant } from 'affinity-engine';
+import { AnimatableMixin, classNames, registrant } from 'affinity-engine';
 import { DirectableComponentMixin, StyleableComponentMixin } from 'affinity-engine-stage';
 
 const {
@@ -12,42 +12,43 @@ const {
 
 const { reads } = computed;
 
-export default Component.extend(DirectableComponentMixin, StyleableComponentMixin, {
+export default Component.extend(AnimatableMixin, DirectableComponentMixin, StyleableComponentMixin, {
   layout,
 
-  classNames: ['ae-stage-direction-text-container'],
+  classNames: ['ae-stage-direction-text-container', 'ae-hidden'],
   hook: 'affinity_engine_stage_direction_text',
 
   translator: registrant('affinity-engine/translator'),
 
   keyboardActivated: reads('isFocused'),
 
-  configuration: reads('direction.configuration'),
-  animationLibrary: reads('configuration.animationLibrary'),
-  cbs: reads('configuration.cbs'),
-  cps: reads('configuration.cps'),
+  linkedDirections: reads('direction.linkedDirections'),
+  configuration: reads('direction.configuration.attrs'),
+  animator: reads('configuration.animator'),
+  callbacks: reads('configuration.callbacks'),
+  caption: reads('configuration.caption'),
+  duration: reads('configuration.lxlAnimation.duration'),
+  effect: reads('configuration.lxlAnimation.effect'),
+  instant: reads('configuration.instant'),
   keyboardPriority: reads('configuration.keyboardPriority'),
   keys: reads('configuration.keys.accept'),
-  instant: reads('configuration.instant'),
-  static: reads('configuration.static'),
-  name: reads('configuration.name'),
+  persistent: reads('configuration.persistent'),
+  rate: reads('configuration.lxlAnimation.rate'),
   scrollable: reads('configuration.scrollable'),
   transitionIn: reads('configuration.transitionIn'),
   transitionOut: reads('configuration.transitionOut'),
   transitions: reads('configuration.transitions'),
   text: reads('configuration.text'),
-  tweenEffect: reads('configuration.tweenEffect'),
-  tweenRate: reads('configuration.tweenRate'),
 
   customClassNames: classNames('configuration.classNames'),
-  namePosition: classNames('configuration.namePosition'),
+  captionPosition: classNames('configuration.captionPosition'),
 
-  nameTranslation: computed('name', {
+  captionTranslation: computed('caption', {
     get() {
-      const name = get(this, 'name.key') || get(this, 'name');
-      const options = get(this, 'name.options');
+      const caption = get(this, 'caption.key') || get(this, 'caption');
+      const options = get(this, 'caption.options');
 
-      return get(this, 'translator').translate(name, options) || name;
+      return get(this, 'translator').translate(caption, options) || caption;
     }
   }).readOnly(),
 
@@ -60,15 +61,15 @@ export default Component.extend(DirectableComponentMixin, StyleableComponentMixi
     }
   }).readOnly(),
 
+  didTransitionOut() {
+    this.resolveAndDestroy();
+  },
+
   actions: {
     completeText() {
-      if (get(this, 'static')) { return; }
+      if (get(this, 'persistent')) { return; }
 
       set(this, 'willTransitionOut', true);
-    },
-
-    didTransitionOut() {
-      this.resolveAndDestroy();
     }
   }
 });
