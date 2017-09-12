@@ -17,6 +17,7 @@ export default Component.extend(AnimatableMixin, DirectableComponentMixin, Style
 
   classNames: ['ae-stage-direction-text-container', 'ae-hidden'],
   hook: 'affinity_engine_stage_direction_text',
+  mediaElementSelector: '.ae-stage',
 
   translator: registrant('affinity-engine/translator'),
 
