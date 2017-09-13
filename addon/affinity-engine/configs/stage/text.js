@@ -1,19 +1,21 @@
 export default {
   priority: 3,
-  component: {
-    stage: {
-      direction: {
-        text: {
-          attrs: {
-            layer: 'stage.prompt.text'
-          }
-        }
-      },
-      layer: {
-        stage: {
-          prompt: {
+  default: {
+    component: {
+      stage: {
+        direction: {
+          text: {
             attrs: {
-              zIndex: 10
+              layer: 'stage.prompt.text'
+            }
+          }
+        },
+        layer: {
+          stage: {
+            prompt: {
+              attrs: {
+                zIndex: 10
+              }
             }
           }
         }

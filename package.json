@@ -1,6 +1,6 @@
 {
   "name": "affinity-engine-stage-direction-text",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Text for Affinity Engine Stage",
   "keywords": [
     "ember-addon",
