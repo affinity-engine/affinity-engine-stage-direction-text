@@ -23,9 +23,9 @@ export default Direction.extend({
     'text',
     'component.stage.direction.prompt',
     'prompt',
-    'component.stage.direction.every',
-    'component.stage.every',
-    'children'
+    'component.stage.direction.all',
+    'component.stage.all',
+    'all'
   ],
 
   _setup: cmd({ async: true, render: true }, function(text, options = {}) {
