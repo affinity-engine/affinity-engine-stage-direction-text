@@ -6,7 +6,8 @@ export default {
         direction: {
           text: {
             attrs: {
-              layer: 'stage.prompt.text'
+              layer: 'stage.prompt.text',
+              mustClickSelf: false
             }
           }
         },

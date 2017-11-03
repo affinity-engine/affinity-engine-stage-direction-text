@@ -33,6 +33,7 @@ export default Component.extend(AnimatableMixin, DirectableComponentMixin, Style
   instant: reads('configuration.instant'),
   keyboardPriority: reads('configuration.keyboardPriority'),
   keys: reads('configuration.keys.accept'),
+  mustClickSelf: reads('configuration.mustClickSelf'),
   persistent: reads('configuration.persistent'),
   rate: reads('configuration.lxlAnimation.rate'),
   scrollable: reads('configuration.scrollable'),
