@@ -9,7 +9,7 @@ export default Scene.extend({
 
     yield step();
 
-    const textResult = yield script.text('if you [[#twine foo]]click <em>here</em> in this reallly longg link that maybe doesnt fade in at all[[/twine]] or [[#twine bar]]here[[/twine]]', { persistent: true, mustClickSelf: true });
+    const textResult = yield script.text('if you [[#twine foo]]click <em>here</em>[[/twine]] or [[#twine bar]]here[[/twine]]', { persistent: true, mustClickSelf: true });
     yield script.text(textResult.value + textResult.text, { mustClickSelf: true });
 
     yield step();

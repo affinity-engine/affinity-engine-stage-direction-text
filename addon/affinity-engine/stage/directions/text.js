@@ -49,7 +49,7 @@ export default Direction.extend({
   }),
 
   cb: cmd(function(name, cb) {
-    set(this, `callbacks.${name}`, cb);
+    set(this, `configuration.attrs.callbacks.${name}`, cb);
   }),
 
   close: cmd(function() {
