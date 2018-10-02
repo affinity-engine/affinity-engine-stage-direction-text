@@ -14,7 +14,7 @@ moduleForAcceptance('Acceptance | affinity-engine/stage/directions/text', {
 });
 
 test('Affinity Engine | stage | Directions | Text', function(assert) {
-  assert.expect(17);
+  assert.expect(18);
 
   visit('/test-scenarios/affinity-engine/stage/directions/text').then(() => {
     assert.equal($hook('affinity_engine_stage_direction_text').text().trim(), 'persistent', 'text is correct');
@@ -40,10 +40,22 @@ test('Affinity Engine | stage | Directions | Text', function(assert) {
 
   step();
 
+  click('.lxl-container:last a:first');
+
+  step();
+
+  andThen(() => {
+    assert.equal($hook('affinity_engine_stage_direction_text_content').last().text().trim(), 'twine-cb successful', 'twine-cb succeeded');
+  });
+
+  click('.lxl-container:last');
+
+  step();
+
   andThen(() => {
     assert.equal($hook('affinity_engine_stage_direction_text').first().css('opacity'), 0.5, 'box transitioned using `transition`');
     assert.equal($hook('affinity_engine_stage_direction_text_content').last().text().trim(), '123', 'text is correct');
-    assert.equal($hook('affinity_engine_stage_direction_text').length, 2, 'second text present');
+    assert.equal($hook('affinity_engine_stage_direction_text').length, 3, 'second text present');
   });
 
   click('.lxl-container:last');
@@ -52,7 +64,7 @@ test('Affinity Engine | stage | Directions | Text', function(assert) {
     assert.equal($hook('affinity_engine_stage_direction_text_content').last().text().trim(), '456', 'text is correctly changed');
     assert.equal($hook('affinity_engine_stage_direction_text_caption').last().text().trim(), 'foo', 'caption is correct');
     assert.ok($hook('affinity_engine_stage_direction_text_caption').last().hasClass('center'), 'caption class is correct');
-    assert.equal($hook('affinity_engine_stage_direction_text').length, 2, 'previous text closed');
+    assert.equal($hook('affinity_engine_stage_direction_text').length, 3, 'previous text closed');
   });
 
   click('.lxl-container:last');
@@ -60,18 +72,18 @@ test('Affinity Engine | stage | Directions | Text', function(assert) {
   andThen(() => {
     assert.equal($hook('affinity_engine_stage_direction_text_content').last().text().trim(), '789', 'text is correctly changed again');
     assert.ok($hook('affinity_engine_stage_direction_text_caption_inner_container').last().hasClass('foo'), 'class is correct');
-    assert.equal($hook('affinity_engine_stage_direction_text').length, 2, 'all previous texts closed, except persistent');
+    assert.equal($hook('affinity_engine_stage_direction_text').length, 3, 'all previous texts closed, except persistent');
   });
 
   click('.lxl-container:last');
 
   andThen(() => {
-    assert.equal($hook('affinity_engine_stage_direction_text').length, 1, 'all text except persistent closed');
+    assert.equal($hook('affinity_engine_stage_direction_text').length, 2, 'all text except persistent closed');
   });
 
   step();
 
   andThen(() => {
-    assert.equal($hook('affinity_engine_stage_direction_text').length, 0, 'persistent closed');
+    assert.equal($hook('affinity_engine_stage_direction_text').length, 1, 'persistent closed');
   });
 });

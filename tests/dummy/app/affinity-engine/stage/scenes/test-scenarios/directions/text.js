@@ -14,6 +14,19 @@ export default Scene.extend({
 
     yield step();
 
+    script.text('if you [[#twine-cb foo]]click <em>here</em>[[/twine-cb]]', {
+      persistent: true,
+      callbacks: {
+        foo() {
+          script.text('twine-cb successful', { mustClickSelf: true });
+        }
+      }
+    });
+
+    yield step();
+
+    yield step();
+
     persistentText.transition({ effect: { opacity: 0.5 }, duration: 0 });
 
     yield script.text('123', { mustClickSelf: true });

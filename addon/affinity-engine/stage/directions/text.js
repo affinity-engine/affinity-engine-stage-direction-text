@@ -28,7 +28,7 @@ export default Direction.extend({
   ],
 
   _setup: cmd({ async: true, render: true }, function(text, options = {}) {
-    const twineCb = (...params) => {
+    const twine = (...params) => {
       const element = params.pop();
       const text = (element.innerText || element.textContent).trim();
       const value = params.length > 1 ? params : params[0];
@@ -39,10 +39,26 @@ export default Direction.extend({
       this.set('willTransitionOut', true);
     };
 
+    const twineCb = (...params) => {
+      const cbName = params.shift();
+      const element = params.pop();
+      const text = (element.innerText || element.textContent).trim();
+      const value = params.length > 1 ? params : params[0];
+      this.get(`configuration.attrs.callbacks.${cbName}`)({
+        text,
+        value
+      });
+    }
+
+    const callbacks = Ember.Object.create(assign({
+      twine,
+      'twine-cb': twineCb
+    }, options.callbacks || {}));
+
+    delete options.callbacks;
+
     this.configure(assign({
-      callbacks: Ember.Object.create({
-        twine: twineCb
-      }),
+      callbacks,
       text,
       transitions: Ember.A()
     }, options));
