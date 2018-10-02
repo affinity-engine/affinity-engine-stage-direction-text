@@ -14,7 +14,7 @@ moduleForAcceptance('Acceptance | affinity-engine/stage/directions/text', {
 });
 
 test('Affinity Engine | stage | Directions | Text', function(assert) {
-  assert.expect(16);
+  assert.expect(17);
 
   visit('/test-scenarios/affinity-engine/stage/directions/text').then(() => {
     assert.equal($hook('affinity_engine_stage_direction_text').text().trim(), 'persistent', 'text is correct');
@@ -27,6 +27,16 @@ test('Affinity Engine | stage | Directions | Text', function(assert) {
   andThen(() => {
     assert.equal($hook('affinity_engine_stage_direction_text').length, 1, 'persistent text remains present');
   });
+
+  step();
+
+  click('.lxl-container:last a:first');
+
+  andThen(() => {
+    assert.equal($hook('affinity_engine_stage_direction_text_content').last().text().trim(), 'fooclick here', 'text results are correct');
+  });
+
+  click('.lxl-container:last');
 
   step();
 

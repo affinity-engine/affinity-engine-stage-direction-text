@@ -1,6 +1,6 @@
 {
   "name": "affinity-engine-stage-direction-text",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Text for Affinity Engine Stage",
   "keywords": [
     "ember-addon",
@@ -23,7 +23,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.3.0",
     "ember-cli-htmlbars": "^2.0.1",
-    "ember-letter-by-letter": "^0.4.3",
+    "ember-letter-by-letter": "^0.5.0",
     "ember-perfect-scrollbar": "^0.0.5"
   },
   "devDependencies": {

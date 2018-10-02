@@ -5,7 +5,6 @@ import multiton from 'ember-multiton-service';
 const {
   assign,
   computed,
-  get,
   set
 } = Ember;
 
@@ -29,8 +28,21 @@ export default Direction.extend({
   ],
 
   _setup: cmd({ async: true, render: true }, function(text, options = {}) {
+    const twineCb = (...params) => {
+      const element = params.pop();
+      const text = (element.innerText || element.textContent).trim();
+      const value = params.length > 1 ? params : params[0];
+      this.set('choice', {
+        text,
+        value
+      });
+      this.set('willTransitionOut', true);
+    };
+
     this.configure(assign({
-      callbacks: Ember.Object.create(),
+      callbacks: Ember.Object.create({
+        twine: twineCb
+      }),
       text,
       transitions: Ember.A()
     }, options));
@@ -41,7 +53,7 @@ export default Direction.extend({
   }),
 
   close: cmd(function() {
-    get(this, 'esBus').publish('shouldRemoveDirection', this);
+    this.set('willTransitionOut', true);
   }),
 
   transition: cmd({ async: true, render: true }, function(options = {}) {

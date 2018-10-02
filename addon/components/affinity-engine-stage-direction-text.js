@@ -10,7 +10,7 @@ const {
   set
 } = Ember;
 
-const { reads } = computed;
+const { alias, reads } = computed;
 
 export default Component.extend(AnimatableMixin, DirectableComponentMixin, StyleableComponentMixin, {
   layout,
@@ -41,6 +41,7 @@ export default Component.extend(AnimatableMixin, DirectableComponentMixin, Style
   transitionOut: reads('configuration.transitionOut'),
   transitions: reads('configuration.transitions'),
   text: reads('configuration.text'),
+  willTransitionOut: alias('direction.willTransitionOut'),
 
   customClassNames: classNames('configuration.classNames'),
   captionPosition: classNames('configuration.captionPosition'),
@@ -64,7 +65,7 @@ export default Component.extend(AnimatableMixin, DirectableComponentMixin, Style
   }).readOnly(),
 
   didTransitionOut() {
-    this.resolveAndDestroy();
+    this.resolveAndDestroy(this.get('direction.choice'));
   },
 
   actions: {

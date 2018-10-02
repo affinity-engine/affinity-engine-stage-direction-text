@@ -9,6 +9,11 @@ export default Scene.extend({
 
     yield step();
 
+    const textResult = yield script.text('if you [[#twine foo]]click <em>here</em>[[/twine]] or [[#twine bar]]here[[/twine]]', { persistent: true, mustClickSelf: true });
+    yield script.text(textResult.value + textResult.text, { mustClickSelf: true });
+
+    yield step();
+
     persistentText.transition({ effect: { opacity: 0.5 }, duration: 0 });
 
     yield script.text('123', { mustClickSelf: true });
